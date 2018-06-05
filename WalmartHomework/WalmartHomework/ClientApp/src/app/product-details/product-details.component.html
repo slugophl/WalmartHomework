@@ -1,0 +1,26 @@
+<div class="row margin-top-10">
+  <div class="col-sm-12">
+    <a href="#" (click)="goBack()">Back</a>
+  </div>
+</div>
+<div class="row margin-top-90">
+  <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-sm-4" style="text-align: center;">
+      <img [src]="product.largeImage" />
+    </div>
+    <div class="col-sm-4">
+      <h3>{{product.name}}</h3>
+      <p>{{product.shortDescription}}</p>
+      <h4>{{product.salePrice | currency:'USD':symbol}}</h4>
+    </div>
+  </div>
+</div>
+<div class="row margin-top-40">
+  <div class="col-sm-12">
+    <h2>Recommended</h2>
+  </div>
+</div>
+<div class="row">
+  <img *ngIf="!recommendations || recommendations.length == 0" src="../../assets/images/walmart-loader.gif" style="width: 200px; height: 150px;" title="Loading..." />
+  <results-list *ngIf="recommendations?.length > 0" [results]="recommendations"></results-list>
+</div>

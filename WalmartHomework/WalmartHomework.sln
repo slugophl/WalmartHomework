@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalmartHomework", "WalmartHomework\WalmartHomework.csproj", "{6DEFD7D2-855E-4F12-BBFD-D95310136A25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalmartHomework.Tests", "WalmartHomework.Tests\WalmartHomework.Tests.csproj", "{3C12F7CB-86E4-46A5-BD9F-B6FBD0E3E348}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalmartHomework.Core", "WalmartHomework.Core\WalmartHomework.Core.csproj", "{19C3B57F-6D59-42F2-A2A1-C319C51AA856}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalmartHomework.Infrastructure", "WalmartHomework.Infrastructure\WalmartHomework.Infrastructure.csproj", "{64895040-F71A-441F-8D71-151E65592716}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{6DEFD7D2-855E-4F12-BBFD-D95310136A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DEFD7D2-855E-4F12-BBFD-D95310136A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DEFD7D2-855E-4F12-BBFD-D95310136A25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C12F7CB-86E4-46A5-BD9F-B6FBD0E3E348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C12F7CB-86E4-46A5-BD9F-B6FBD0E3E348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C12F7CB-86E4-46A5-BD9F-B6FBD0E3E348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C12F7CB-86E4-46A5-BD9F-B6FBD0E3E348}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19C3B57F-6D59-42F2-A2A1-C319C51AA856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C3B57F-6D59-42F2-A2A1-C319C51AA856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C3B57F-6D59-42F2-A2A1-C319C51AA856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C3B57F-6D59-42F2-A2A1-C319C51AA856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64895040-F71A-441F-8D71-151E65592716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64895040-F71A-441F-8D71-151E65592716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64895040-F71A-441F-8D71-151E65592716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64895040-F71A-441F-8D71-151E65592716}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

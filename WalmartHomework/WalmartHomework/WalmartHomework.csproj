@@ -15,12 +15,49 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.1.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.4" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\product-details\product-resolver.service.ts" />
+    <None Remove="ClientApp\src\app\results-list\results-list-resolver.service.ts" />
+    <None Remove="ClientApp\src\shared\custompipes\truncate.pipe.ts" />
+    <None Remove="ClientApp\src\shared\models\giftoptions.model.ts" />
+    <None Remove="ClientApp\src\shared\models\imageentity.model.ts" />
+    <None Remove="ClientApp\src\shared\models\item.model.ts" />
+    <None Remove="ClientApp\src\shared\models\itemattributes.model.ts" />
+    <None Remove="ClientApp\src\shared\models\search.model.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WalmartHomework.Core\WalmartHomework.Core.csproj" />
+    <ProjectReference Include="..\WalmartHomework.Infrastructure\WalmartHomework.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\product-details\product-resolver.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\results-list\results-list-resolver.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\shared\custompipes\truncate.pipe.ts" />
+    <TypeScriptCompile Include="ClientApp\src\shared\models\giftoptions.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\shared\models\imageentity.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\shared\models\item.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\shared\models\itemattributes.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\shared\models\search.model.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

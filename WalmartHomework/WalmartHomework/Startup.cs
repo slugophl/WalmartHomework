@@ -5,6 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using WalmartHomework.Core.Interfaces;
+using WalmartHomework.Core.Models;
+using WalmartHomework.Filters;
+using WalmartHomework.Infrastructure.Clients;
 
 namespace WalmartHomework
 {
@@ -20,7 +27,22 @@ namespace WalmartHomework
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddScoped<IWalmartOpenApiClient, WalmartOpenApiClient>(); // TODO: This needs to be changed to avoid the reference to infrastructure
+
+            services
+                .AddMvc(//config =>
+                //{
+                //    config.Filters.Add(typeof(LogFilter));
+                //}
+                )
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                });
+
+            services.Configure<AppSettings>(Configuration.GetSection("ApplicationSettings"));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

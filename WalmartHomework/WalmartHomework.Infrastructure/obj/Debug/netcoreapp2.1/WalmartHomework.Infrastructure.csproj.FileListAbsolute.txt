@@ -1,0 +1,12 @@
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\bin\Debug\netcoreapp2.1\WalmartHomework.Infrastructure.deps.json
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\bin\Debug\netcoreapp2.1\WalmartHomework.Infrastructure.dll
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\bin\Debug\netcoreapp2.1\WalmartHomework.Core.dll
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\bin\Debug\netcoreapp2.1\WalmartHomework.Core.pdb
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\obj\Debug\netcoreapp2.1\WalmartHomework.Infrastructure.csprojAssemblyReference.cache
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\obj\Debug\netcoreapp2.1\WalmartHomework.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\obj\Debug\netcoreapp2.1\WalmartHomework.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\obj\Debug\netcoreapp2.1\WalmartHomework.Infrastructure.AssemblyInfo.cs
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\obj\Debug\netcoreapp2.1\WalmartHomework.Infrastructure.csproj.CopyComplete
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\bin\Debug\netcoreapp2.1\WalmartHomework.Infrastructure.pdb
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\obj\Debug\netcoreapp2.1\WalmartHomework.Infrastructure.dll
+C:\Users\Samuel\Source\Repos\WalmartHomework\WalmartHomework\WalmartHomework.Infrastructure\obj\Debug\netcoreapp2.1\WalmartHomework.Infrastructure.pdb
