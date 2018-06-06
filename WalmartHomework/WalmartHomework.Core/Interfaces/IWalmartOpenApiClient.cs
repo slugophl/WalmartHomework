@@ -8,8 +8,8 @@ namespace WalmartHomework.Core.Interfaces
 {
     public interface IWalmartOpenApiClient
     {
-        Task<Search> Search(string query);
-        Task<Item> LookupProduct(long id);
-        Task<List<Item>> GetRecommendations(long id);
+        Task<SearchResponse> Search(string query);
+        Task<ItemResponse> LookupProduct(long id);
+        Task<RecommendationsResponse> GetRecommendations(long id);
     }
 }

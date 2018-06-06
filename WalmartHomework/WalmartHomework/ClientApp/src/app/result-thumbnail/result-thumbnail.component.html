@@ -4,7 +4,7 @@
       <img [src]="result.thumbnailImage" alt="Product Image" />
       <div class="caption">
         <h4><strong>{{result.name}}</strong></h4>
-        <p>{{result.shortDescription | truncate:100:true}}</p>
+        <p>{{result.shortDescription | truncate:200:true}}</p>
         <p><strong>{{result?.salePrice | currency:'USD':'symbol'}}</strong></p>
       </div>
     </div>

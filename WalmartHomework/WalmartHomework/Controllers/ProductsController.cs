@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using WalmartHomework.Core.Dtos;
 using WalmartHomework.Core.Interfaces;
+using WalmartHomework.Core.Models;
 
 namespace WalmartHomework.Controllers
 {
@@ -13,28 +17,24 @@ namespace WalmartHomework.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IWalmartOpenApiClient _walmartOpenApiClient;
+        private readonly ILogger<ProductsController> _logger;
 
-        public ProductsController(IWalmartOpenApiClient walmartOpenApiClient)
+        public ProductsController(IWalmartOpenApiClient walmartOpenApiClient, ILogger<ProductsController> logger)
         {
             _walmartOpenApiClient = walmartOpenApiClient;
+            _logger = logger;
         }
-
-        // GET: api/Products
-        //[HttpGet]
-        //public IActionResult Get()
-        //{
-        //    return Ok(new string[] { "value1", "value2" });
-        //}
 
         // GET: api/Products/Search?query=ipod
         [HttpGet(Name = "Search")]
         [Route("Search")]
         public async Task<IActionResult> Search(string query)
         {
-            if (string.IsNullOrEmpty(query))
-                return BadRequest();
-
+            _logger.LogInformation("Searching for {query}", query);
             var searchResponse = await _walmartOpenApiClient.Search(query);
+
+            if (searchResponse.Errors != null && searchResponse.Errors.Any())
+                return Ok(Mapper.Map<ErrorsDto>(searchResponse));
 
             return Ok(searchResponse);
         }
@@ -44,10 +44,17 @@ namespace WalmartHomework.Controllers
         [Route("{id}/Lookup")]
         public async Task<IActionResult> LookupProduct(long id)
         {
+            _logger.LogInformation("Looking up product ID {ID}", id);
             var item = await _walmartOpenApiClient.LookupProduct(id);
 
             if (item.ItemId == 0)
-                return BadRequest();
+            {
+                _logger.LogWarning("Product ID {ID} not found", id);
+                return NotFound();
+            }
+
+            if (item.Errors != null && item.Errors.Any())
+                return Ok(Mapper.Map<ErrorsDto>(item));
 
             return Ok(item);
         }
@@ -57,33 +64,16 @@ namespace WalmartHomework.Controllers
         [Route("{id}/Recommendations")]
         public async Task<IActionResult> GetRecommendations(long id)
         {
+            _logger.LogWarning("Getting recommendations for product ID {ID}", id);
             var recommendations = await _walmartOpenApiClient.GetRecommendations(id);
 
-            if (recommendations == null || recommendations.Count == 0)
-                return BadRequest();
+            if (recommendations.Errors != null && recommendations.Errors.Any())
+            {
+                var errorsDto = Mapper.Map<ErrorsDto>(recommendations);
+                return Ok(errorsDto);
+            }
 
-            return Ok(recommendations.Take(10).ToList());
-        }
-
-        // POST: api/Products
-        [HttpPost]
-        public IActionResult Post([FromBody] string value)
-        {
-            return Created("", "value");
-        }
-
-        // PUT: api/Products/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] string value)
-        {
-            return Ok();
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            return Ok();
+            return Ok(recommendations.Recommendations.Take(10).ToList());
         }
     }
 }

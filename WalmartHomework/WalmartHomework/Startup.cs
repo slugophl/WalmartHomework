@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -43,6 +44,8 @@ namespace WalmartHomework
                 });
 
             services.Configure<AppSettings>(Configuration.GetSection("ApplicationSettings"));
+
+            services.AddAutoMapper(typeof(Startup));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

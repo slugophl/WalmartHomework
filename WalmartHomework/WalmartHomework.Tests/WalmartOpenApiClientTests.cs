@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,7 @@ namespace WalmartHomework.Tests
 
         public WalmartOpenApiClientTests()
         {
-            _walmartOpenApiClient = new WalmartOpenApiClient(_appSettings);
+            _walmartOpenApiClient = new WalmartOpenApiClient(_appSettings, new NullLogger<BaseClient>());
         }
 
         [Fact]
@@ -34,7 +36,7 @@ namespace WalmartHomework.Tests
         {
             var response = await _walmartOpenApiClient.Search("ipod");
 
-            Assert.IsType<Search>(response);
+            Assert.IsType<SearchResponse>(response);
             Assert.Equal("ipod", response.Query);
             Assert.True(response.TotalResults > 0);
             Assert.NotEmpty(response.Items);
@@ -46,7 +48,7 @@ namespace WalmartHomework.Tests
         {
             var response = await _walmartOpenApiClient.Search("aslkjsdfoiuwe");
 
-            Assert.IsType<Search>(response);
+            Assert.IsType<SearchResponse>(response);
             Assert.Equal("Results not found!", response.Message);
             Assert.Equal(0, response.TotalResults);
             Assert.Null(response.Items);
@@ -58,7 +60,7 @@ namespace WalmartHomework.Tests
         {
             var response = await _walmartOpenApiClient.LookupProduct(12417832);
 
-            Assert.IsType<Item>(response);
+            Assert.IsType<ItemResponse>(response);
             Assert.Equal(12417832, response.ItemId);
         }
 
@@ -68,7 +70,7 @@ namespace WalmartHomework.Tests
         {
             var response = await _walmartOpenApiClient.LookupProduct(98765432123456789);
 
-            Assert.IsType<Item>(response);
+            Assert.IsType<ItemResponse>(response);
             Assert.Equal(0, response.ItemId);
         }
 
@@ -78,8 +80,8 @@ namespace WalmartHomework.Tests
         {
             var response = await _walmartOpenApiClient.GetRecommendations(44569327);
 
-            Assert.IsType<List<Item>>(response);
-            Assert.NotEmpty(response);
+            Assert.IsType<RecommendationsResponse>(response);
+            Assert.NotEmpty(response.Recommendations);
         }
     }
 }

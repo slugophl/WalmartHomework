@@ -14,7 +14,7 @@
       <div class="input-group">
         <input type="text" [(ngModel)]="query" id="query" name="query" class="form-control" placeholder="Search for..." />
         <span class="input-group-btn">
-          <button class="btn btn-primary" type="submit">Go!</button>
+          <button class="btn btn-primary" type="submit" [disabled]="query == ''">Go!</button>
         </span>
       </div>
     </form>

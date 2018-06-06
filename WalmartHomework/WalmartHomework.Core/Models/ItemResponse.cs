@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WalmartHomework.Core.Models
 {
-    public class Item
+    public class ItemResponse : WalmartOpenApiBaseResponse
     {
         public long ItemId { get; set; }
         public long ParentItemId { get; set; }

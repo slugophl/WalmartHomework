@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WalmartHomework.Core.Models
+namespace WalmartHomework.Core.Dtos
 {
-    public class Search
+    public class SearchDto
     {
         public string Query { get; set; }
         public string Sort { get; set; }
@@ -12,7 +12,7 @@ namespace WalmartHomework.Core.Models
         public int TotalResults { get; set; }
         public int Start { get; set; }
         public int NumItems { get; set; }
-        public IEnumerable<Item> Items { get; set; }
+        public IEnumerable<ItemDto> Items { get; set; }
         public string Message { get; set; }
         public IEnumerable<object> Facets { get; set; }
     }
