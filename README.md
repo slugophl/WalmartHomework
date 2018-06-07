@@ -12,7 +12,7 @@ details of that product on a results page along with a list of recommended produ
 3. Open a command prompt and navigate to the angular project directory (ClientApp).
 4. Run `npm install` to download the node modules (this may take a few minutes).
 5. Navigate one directory up to the web project (WalmartHomework) and run `dotnet build` to build the project and its dependencies (this may take a few minutes).
-6. Run `set ASPNETCORE_ENVIRONMENT=Development'.
+6. Run `set ASPNETCORE_ENVIRONMENT=Development`.
 7. Run `dotnet run` to launch the server.
 8. Open a browser and navigate to `http://localhost:5000`.
  
