@@ -62,8 +62,8 @@ namespace WalmartHomework.Infrastructure.Clients
                 Logger.LogError(e, "Exception attempting to deserialize response for request URI {RequestUri}. Response: {responseStr}", request.RequestUri, responseStr);
                 return new RecommendationsResponse
                 {
-                    StatusCode = response.StatusCode,
-                    Errors = new List<WalmartOpenApiError> { new WalmartOpenApiError { Message = e.Message } }
+                    StatusCode = (int)response.StatusCode,
+                    Errors = new List<WalmartOpenApiError> { new WalmartOpenApiError { Message = $"Response: {responseStr}. Exception {e.Message}" } }
                 };
             }
         }

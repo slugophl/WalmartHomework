@@ -7,7 +7,7 @@ namespace WalmartHomework.Core.Models
 {
     public class WalmartOpenApiBaseResponse
     {
-        public HttpStatusCode StatusCode { get; set; }
+        public int StatusCode { get; set; }
         public IEnumerable<WalmartOpenApiError> Errors { get; set; }
     }
 

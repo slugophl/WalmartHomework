@@ -1,8 +1,9 @@
 import { IGiftOptions } from "./giftoptions.model";
 import { IImageEntity } from "./imageentity.model";
 import { IItemAttributes } from "./itemattributes.model";
+import { IWalmartOpenApiBaseResponse } from "./walmartOpenApiBaseResponse.model";
 
-export interface IItem {
+export interface IItem extends IWalmartOpenApiBaseResponse {
   itemId: number;
   parentItemId: number;
   name: string;

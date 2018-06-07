@@ -31,6 +31,13 @@ namespace WalmartHomework.Controllers
         public async Task<IActionResult> Search(string query)
         {
             _logger.LogInformation("Searching for {query}", query);
+
+            if (string.IsNullOrEmpty(query))
+            {
+                _logger.LogWarning("Empty search query received. Returning bad reqeust.");
+                return BadRequest();
+            }
+
             var searchResponse = await _walmartOpenApiClient.Search(query);
 
             if (searchResponse.Errors != null && searchResponse.Errors.Any())
@@ -47,14 +54,14 @@ namespace WalmartHomework.Controllers
             _logger.LogInformation("Looking up product ID {ID}", id);
             var item = await _walmartOpenApiClient.LookupProduct(id);
 
+            if (item.Errors != null && item.Errors.Any())
+                return Ok(Mapper.Map<ErrorsDto>(item));
+
             if (item.ItemId == 0)
             {
                 _logger.LogWarning("Product ID {ID} not found", id);
                 return NotFound();
             }
-
-            if (item.Errors != null && item.Errors.Any())
-                return Ok(Mapper.Map<ErrorsDto>(item));
 
             return Ok(item);
         }

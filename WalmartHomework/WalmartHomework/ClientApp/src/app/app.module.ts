@@ -5,10 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ResultsListComponent } from './results-list/results-list.component';
 import { ResultThumbnailComponent } from './result-thumbnail/result-thumbnail.component';
 import { WalmartHomeworkService } from '../shared/services/walmart-homework.service';
@@ -19,10 +16,7 @@ import { TruncatePipe } from '../shared/custompipes/truncate.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     ResultsListComponent,
     ResultThumbnailComponent,
     ProductDetailsComponent,
@@ -34,9 +28,7 @@ import { TruncatePipe } from '../shared/custompipes/truncate.pipe';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'products/:id', component: ProductDetailsComponent, resolve: {product: ProductResolverService} },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'products/:id', component: ProductDetailsComponent, resolve: {product: ProductResolverService} }
     ])
   ],
   providers: [

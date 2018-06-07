@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -6,19 +7,26 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WalmartHomework.Controllers;
+using WalmartHomework.Core.Dtos;
 using WalmartHomework.Core.Interfaces;
 using WalmartHomework.Core.Models;
 using Xunit;
 
 namespace WalmartHomework.Tests
 {
-    public class ProductsControllerTests
+    public class ProductsControllerTests : IDisposable
     {
         private readonly Mock<ILogger<ProductsController>> _mockLogger;
 
         public ProductsControllerTests()
         {
             _mockLogger = new Mock<ILogger<ProductsController>>();
+            Mapper.Initialize(cfg => cfg.CreateMap<WalmartOpenApiBaseResponse, ErrorsDto>());
+        }
+
+        public void Dispose()
+        {
+            Mapper.Reset();
         }
 
         [Fact]
@@ -63,6 +71,21 @@ namespace WalmartHomework.Tests
 
         [Fact]
         [Trait("Category", "Unit")]
+        public async Task Search_Return_Ok_With_Errors()
+        {
+            var mockWalmartOpenApiClient = new Mock<IWalmartOpenApiClient>();
+            mockWalmartOpenApiClient.Setup(x => x.Search(It.IsAny<string>())).Returns(Task.FromResult(new SearchResponse { Errors = new List<WalmartOpenApiError> { new WalmartOpenApiError { Message = "Error calling search API" } } }));
+
+            var controller = new ProductsController(mockWalmartOpenApiClient.Object, _mockLogger.Object);
+
+            var response = await controller.Search("ipod");
+
+            Assert.IsType<OkObjectResult>(response);
+        }
+
+
+        [Fact]
+        [Trait("Category", "Unit")]
         public async Task Lookup_Product_Valid_Id_Return_Ok()
         {
             var mockWalmartOpenApiClient = new Mock<IWalmartOpenApiClient>();
@@ -103,7 +126,21 @@ namespace WalmartHomework.Tests
 
             var response = await controller.LookupProduct(98765432123456789);
 
-            Assert.IsType<BadRequestResult>(response);
+            Assert.IsType<NotFoundResult>(response);
+        }
+
+        [Fact]
+        [Trait("Category", "Unit")]
+        public async Task Lookup_Product_Return_Ok_With_Errors()
+        {
+            var mockWalmartOpenApiClient = new Mock<IWalmartOpenApiClient>();
+            mockWalmartOpenApiClient.Setup(x => x.LookupProduct(It.IsAny<long>())).Returns(Task.FromResult(new ItemResponse { Errors = new List<WalmartOpenApiError> { new WalmartOpenApiError { Message = "Error calling lookup product API" } } }));
+
+            var controller = new ProductsController(mockWalmartOpenApiClient.Object, _mockLogger.Object);
+
+            var response = await controller.LookupProduct(12417832);
+
+            Assert.IsType<OkObjectResult>(response);
         }
 
         [Fact]
@@ -144,6 +181,20 @@ namespace WalmartHomework.Tests
             var controller = new ProductsController(mockWalmartOpenApiClient.Object, _mockLogger.Object);
 
             var response = await controller.GetRecommendations(42608125);
+
+            Assert.IsType<OkObjectResult>(response);
+        }
+
+        [Fact]
+        [Trait("Category", "Unit")]
+        public async Task Get_Recommendations_Return_Ok_With_No_Recommendations_Error()
+        {
+            var mockWalmartOpenApiClient = new Mock<IWalmartOpenApiClient>();
+            mockWalmartOpenApiClient.Setup(x => x.GetRecommendations(It.IsAny<long>())).Returns(Task.FromResult(new RecommendationsResponse { Errors = new List<WalmartOpenApiError> { new WalmartOpenApiError { Code = 4022, Message = "No recommendations found for item 45832240" } } }));
+
+            var controller = new ProductsController(mockWalmartOpenApiClient.Object, _mockLogger.Object);
+
+            var response = await controller.GetRecommendations(45832240);
 
             Assert.IsType<OkObjectResult>(response);
         }

@@ -27,8 +27,8 @@ export class WalmartHomeworkService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
-      return Observable.of(result as T);
+      console.log(error);
+      return Observable.of(error.error as T);
     }
   }
 }

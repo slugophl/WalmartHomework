@@ -83,5 +83,18 @@ namespace WalmartHomework.Tests
             Assert.IsType<RecommendationsResponse>(response);
             Assert.NotEmpty(response.Recommendations);
         }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task Get_Recommendations_Valid_Id_Return_No_Recommendations()
+        {
+            var response = await _walmartOpenApiClient.GetRecommendations(45832240);
+
+            Assert.IsType<RecommendationsResponse>(response);
+            Assert.Null(response.Recommendations);
+            Assert.NotEmpty(response.Errors);
+            Assert.Equal("No recommendations found for item 45832240", response.Errors.First().Message);
+            Assert.Equal(4022, response.Errors.First().Code);
+        }
     }
 }

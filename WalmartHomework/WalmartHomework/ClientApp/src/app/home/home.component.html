@@ -1,6 +1,6 @@
 <div class="row margin-top-10">
   <div class="col-sm-12">
-    <a href="http://www.walmart.com">Home</a>
+    <a href="http://www.walmart.com">walmart.com</a>
   </div>
 </div>
 <div *ngIf="!showLoader" class="row margin-top-90">
@@ -9,7 +9,7 @@
   </div>
 </div>
 <div *ngIf="!showLoader" class="row margin-top-40">
-  <div class="col-sm-4 center">
+  <div class="col-md-4 col-sm-12 col-xs-12 center">
     <form #searchForm="ngForm" (ngSubmit)="search(searchForm)" autocomplete="off" novalidate="novalidate">
       <div class="input-group">
         <input type="text" [(ngModel)]="query" id="query" name="query" class="form-control" placeholder="Search for..." />
@@ -23,6 +23,9 @@
 
 <div class="row margin-top-40">
   <results-list *ngIf="results && results.length > 0" [results]="results"></results-list>
+  <div class="col-sm-12" *ngIf="errorMessage && errorMessage !== ''">
+    <p>{{errorMessage}}</p>
+  </div>
 </div>
 
 <div *ngIf="showLoader" class="row center margin-top-100">

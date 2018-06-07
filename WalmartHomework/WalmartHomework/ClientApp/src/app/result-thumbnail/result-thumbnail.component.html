@@ -1,10 +1,10 @@
-<div class="col-sm-2 thumbnail-card margin-bottom-40">
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 thumbnail-card margin-bottom-40">
   <a href="#" [routerLink]="['/products', result.itemId]">
     <div class="thumbnail thumbnail-card">
       <img [src]="result.thumbnailImage" alt="Product Image" />
       <div class="caption">
         <h4><strong>{{result.name}}</strong></h4>
-        <p>{{result.shortDescription | truncate:200:true}}</p>
+        <p>{{result.shortDescription || result.longDescription || result.name | truncate:200:true}}</p>
         <p><strong>{{result?.salePrice | currency:'USD':'symbol'}}</strong></p>
       </div>
     </div>

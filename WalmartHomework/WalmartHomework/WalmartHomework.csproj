@@ -38,6 +38,7 @@
     <None Remove="ClientApp\src\shared\models\item.model.ts" />
     <None Remove="ClientApp\src\shared\models\itemattributes.model.ts" />
     <None Remove="ClientApp\src\shared\models\search.model.ts" />
+    <None Remove="ClientApp\src\shared\models\walmartOpenApiBaseResponse.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +54,7 @@
     <TypeScriptCompile Include="ClientApp\src\shared\models\imageentity.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\shared\models\item.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\shared\models\itemattributes.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\shared\models\walmartOpenApiBaseResponse.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\shared\models\search.model.ts" />
   </ItemGroup>
 

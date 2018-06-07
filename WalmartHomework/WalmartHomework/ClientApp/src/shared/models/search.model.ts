@@ -1,6 +1,7 @@
 import { IItem } from "./item.model";
+import { IWalmartOpenApiBaseResponse } from "./walmartOpenApiBaseResponse.model";
 
-export interface ISearch {
+export interface ISearch extends IWalmartOpenApiBaseResponse {
   query: string;
   sort: string;
   responseGroup: string;
